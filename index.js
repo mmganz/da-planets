@@ -18,11 +18,9 @@ server.use('/', handlers.defaultErrorHandler)
 
 
 io.on('connection', function(socket){
- console.log('a user connected');
- socket.emit('hi')
-  });
-
-
+console.log('a user connected');
+socket.emit('hello', {turtle: ['meredith']})
+  })
 
 
 http.listen(port, function () {
