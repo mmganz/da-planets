@@ -3,9 +3,12 @@
   const fs = require('fs');
   const path = require('path');
 
+
   exports.router = require('express').Router();
 
   let files = fs.readdirSync(__dirname);
+
+
 
   files.forEach(function (file) {
 
