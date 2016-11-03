@@ -1,8 +1,13 @@
 let dataAdapter = require('./data-adapter'),
   uuid = dataAdapter.uuid,
   schemator = dataAdapter.schemator,
+<<<<<<< HEAD
   DS = dataAdapter.DS;
 formatQuery = dataAdapter.formatQuery
+=======
+  DS = dataAdapter.DS,
+  formatQuery = dataAdapter.formatQuery;
+>>>>>>> 8875a91c6ca0ddc204cde196c8b25d0fa478b5ed
 
 let Creature = DS.defineResource({
   name: 'creature',
@@ -13,6 +18,7 @@ let Creature = DS.defineResource({
       galaxy: [{
         localField: 'galaxies',
         localKeys: 'galaxyIds'
+<<<<<<< HEAD
       },
         {
           localField: 'knownGalaxies',
@@ -34,10 +40,17 @@ let Creature = DS.defineResource({
           localField: 'knownMoons',
           foreignKeys: 'creatureIds'
         }]
+=======
+      },{
+        localField: 'knownGalaxies',
+        foreignKeys: 'creatureIds'
+      }]
+>>>>>>> 8875a91c6ca0ddc204cde196c8b25d0fa478b5ed
     }
   }
 })
 
+<<<<<<< HEAD
 
 function create(creature, cb) {
   // Use the Resource Model to create a new Creature
@@ -85,6 +98,42 @@ function inhabitLocation(creatureId, type, xId, cb) {
 
 
 }
+=======
+function create(creature, cb) {
+  // Use the Resource Model to create a new galaxy
+
+  let creatureObj = {
+    id: uuid.v4(),
+    name: creature.name,
+    galaxyIds: {
+    }
+  }
+
+  Creature.create(creatureObj).then(cb).catch(cb)
+}
+
+
+function inhabitGalaxy(creatureId, galaxyId, cb){
+  DS.find('galaxy', galaxyId).then(function(galaxy){
+    Creature.find(creatureId).then(function(creature){
+
+      creature.galaxyIds[galaxyId] = galaxyId;
+      galaxy.creatureIds = galaxy.creatureIds || {}
+      galaxy.creatureIds[creatureId] = creatureId;
+
+      Creature.update(creature.id, creature).then(function(){
+        DS.update('galaxy', galaxy.id, galaxy)
+          .then(cb)
+          .catch(cb)
+      }).catch(cb)
+
+
+    }).catch(cb)
+  }).catch(cb)
+}
+
+
+>>>>>>> 8875a91c6ca0ddc204cde196c8b25d0fa478b5ed
 
 function getAll(query, cb) {
   //Use the Resource Model to get all Galaxies
@@ -92,6 +141,7 @@ function getAll(query, cb) {
 }
 
 function getById(id, query, cb) {
+<<<<<<< HEAD
   // use the Resource Model to get a single Creature by its id
   Creature.find(id, formatQuery(query)).then(cb).catch(cb)
 }
@@ -102,5 +152,16 @@ module.exports = {
   getAll,
   getById,
   inhabitLocation
+=======
+  // use the Resource Model to get a single galaxy by its id
+  Creature.find(id, formatQuery(query)).then(cb).catch(cb)
+}
+
+module.exports = {
+  create,
+  getAll,
+  inhabitGalaxy,
+  getById
+>>>>>>> 8875a91c6ca0ddc204cde196c8b25d0fa478b5ed
 }
 

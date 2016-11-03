@@ -1,8 +1,9 @@
 let dataAdapter = require('./data-adapter'),
   uuid = dataAdapter.uuid,
   schemator = dataAdapter.schemator,
-  DS = dataAdapter.DS;
-  formatQuery = dataAdapter.formatQuery
+  DS = dataAdapter.DS,
+  formatQuery = dataAdapter.formatQuery;
+
 
 let Galaxy = DS.defineResource({
   name: 'galaxy',
@@ -39,6 +40,7 @@ let Galaxy = DS.defineResource({
 function create(name, cb) {
   // Use the Resource Model to create a new galaxy
   let galaxy = { id: uuid.v4(), name: name }
+
   Galaxy.create(galaxy).then(cb).catch(cb)
 }
 

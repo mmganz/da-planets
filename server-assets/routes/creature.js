@@ -25,6 +25,7 @@ router.route('/:id?')
     })
   })
   .put(function (req, res, next) {
+<<<<<<< HEAD
       Creature.inhabitLocation(req.params.id, req.body.type, req.body.id, function(creature){
           if(creature.stack) { return next(creature) }
          return res.send(creature)
@@ -33,3 +34,13 @@ router.route('/:id?')
   .delete(function (req, res, next) {
     res.send('We are working on it....')
   })
+=======
+    Creature.inhabitGalaxy(req.params.id, req.body.galaxyId, function(creature){
+      if(creature.stack) { return next(creature) }
+      return res.send(creature)
+    })
+  })
+  .delete(function (req, res, next) {
+    res.send('We are working on it....')
+  })
+>>>>>>> 8875a91c6ca0ddc204cde196c8b25d0fa478b5ed

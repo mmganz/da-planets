@@ -18,6 +18,7 @@ function formatQuery(query){
 }
 
 DS.registerAdapter('firebase', fbAdapter, { default: true })
+ 
 
 module.exports = {
   DS,
