@@ -30,6 +30,6 @@ server.use('/', handlers.defaultErrorHandler)
   // })
 
 
-http.listen(port, function () {
+server.listen(port, function () {
   console.log(`Creating worlds on port: ${port}`);
 })
