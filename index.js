@@ -5,9 +5,9 @@ let express = require('express'),
   handlers = require('./utils/handlers'),
   server = express(),
   port = process.env.PORT || 1582;
-  var http = require('http').Server(server)
-  var io = require('socket.io')(http),
-  Planet = require('./server-assets/models/planet-model');
+  // var http = require('http').Server(server)
+  // var io = require('socket.io')(http),
+  // Planet = require('./server-assets/models/planet-model');
 
 //Registers Middleware for server
 server.use(bodyParser.json())
@@ -18,16 +18,16 @@ server.use('/', handlers.defaultErrorHandler)
 
 
 
-io.on('connection', function(socket){
-console.log('a user connected');
-socket.emit('hello', {turtle: ['meredith']})
+// io.on('connection', function(socket){
+// console.log('a user connected');
+// socket.emit('hello', {turtle: ['meredith']})
 
   // socket.on('GIVEMEPLANETS', function(){
   //   Planet.getAll({}, function(planets){
   //     socket.emit('PLANETSRECIEVED', planets)
   //   })
   // })
-  })
+  // })
 
 
 http.listen(port, function () {

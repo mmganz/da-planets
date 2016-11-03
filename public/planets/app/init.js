@@ -1,5 +1,7 @@
-;(function(){
+; (function () {
 
-  angular.module('da-planets', [])
+  angular.module('da-planets', [
+    'js-data'
+    ])
 
-}());
+} ());
